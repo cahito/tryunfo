@@ -130,7 +130,7 @@ class Form extends React.Component {
             type="checkbox"
             id="trunfo"
             name="trunfo"
-            value={ cardTrunfo }
+            checked={ cardTrunfo }
             onChange={ onInputChange }
           />
         </label>

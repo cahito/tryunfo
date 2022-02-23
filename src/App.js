@@ -39,8 +39,8 @@ class App extends React.Component {
           cardTrunfo={ false }
           hasTrunfo={ false }
           isSaveButtonDisabled={ false }
-          onInputChange={ (() => {}) }
-          onSaveButtonClick={ (() => {}) }
+          onInputChange={ () => {} }
+          onSaveButtonClick={ () => {} }
         />
       </div>
     );
