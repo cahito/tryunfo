@@ -3,55 +3,64 @@ import Card from './components/Card';
 import Form from './components/Form';
 
 class App extends React.Component {
-/*   constructor() {
+  constructor() {
     super();
     this.state = {
-      projects: data,
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
     };
   }
- */
-  /*     addNewProject = (project) => {
-    this.setState((prevState) => ({
-      projects: [...prevState.projects, project],
-    }));
+
+  onInputChange = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({ [name]: value });
   }
 
-  removeTopic = (title) => {
-    console.log(title);
-    const { projects } = this.state;
-    // this.setState(() => ({ projects: projects.filter((item) => item.title !== title) }));
-    this.setState({
-      projects: projects.filter((item) => item.title !== title),
-    });
-  } */
-
   render() {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
     return (
       <div>
         <h1>Tryunfo</h1>
         <Form
-          cardName=""
-          cardDescription=""
-          cardAttr1=""
-          cardAttr2=""
-          cardAttr3=""
-          cardImage=""
-          cardRare=""
-          cardTrunfo={ false }
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
           hasTrunfo={ false }
           isSaveButtonDisabled={ false }
-          onInputChange={ () => {} }
-          onSaveButtonClick={ () => {} }
+          onInputChange={ this.onInputChange }
+          onSaveButtonClick={ () => { } }
         />
         <Card
-          cardName=""
-          cardDescription=""
-          cardAttr1=""
-          cardAttr2=""
-          cardAttr3=""
-          cardImage=""
-          cardRare=""
-          cardTrunfo={ false }
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
         />
       </div>
     );
