@@ -85,7 +85,6 @@ class App extends React.Component {
     event.preventDefault();
     if (!this.buttonDisabled()) {
       this.addNewCard(this.state);
-
       this.setState({
         cardName: '',
         cardDescription: '',
