@@ -15,8 +15,16 @@ code {
 form {
   display:flex;
   flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 button {
   width: 100px;
+}
+
+.card-container {
+  display:flex;
+  flex-flow: column wrap;
+  align-items: center;
 }
