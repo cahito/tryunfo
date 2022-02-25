@@ -114,8 +114,6 @@ class App extends React.Component {
     }
   }
 
-  // handleHasTrunfo = () => {}
-
   render() {
     const {
       cardName,

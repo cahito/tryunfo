@@ -19,6 +19,19 @@ class Form extends React.Component {
       onSaveButtonClick,
     } = this.props;
 
+    const testTrunfo = (
+      <label htmlFor="trunfo">
+        {'Super trunfo: '}
+        <input
+          data-testid="trunfo-input"
+          type="checkbox"
+          id="trunfo"
+          name="cardTrunfo"
+          checked={ cardTrunfo }
+          onChange={ onInputChange }
+        />
+      </label>);
+
     return (
       <form>
         <label htmlFor="name">
@@ -105,17 +118,7 @@ class Form extends React.Component {
         </label>
         {(hasTrunfo)
           ? <p>Você já tem um Super Trunfo em seu baralho</p>
-          : <label htmlFor="trunfo">
-            {'Super trunfo: '}
-            <input
-              data-testid="trunfo-input"
-              type="checkbox"
-              id="trunfo"
-              name="cardTrunfo"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-            </label>}
+          : testTrunfo}
 
         <button
           data-testid="save-button"
