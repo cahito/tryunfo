@@ -33,7 +33,7 @@ class Form extends React.Component {
       </label>);
 
     return (
-      <form>
+      <form className="form">
         <label htmlFor="name">
           {'Nome do objeto: '}
           <input
