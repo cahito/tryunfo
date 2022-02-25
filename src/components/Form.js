@@ -53,6 +53,7 @@ class Form extends React.Component {
             type="text"
             id="description"
             name="cardDescription"
+            maxLength={ 180 }
             value={ cardDescription }
             onChange={ onInputChange }
           />

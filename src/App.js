@@ -2,8 +2,49 @@ import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
 
-// https://picsum.photos/id/237/100
-// https://picsum.photos/id/1022/100
+const data = [
+  {
+    cardName: 'Carta muito loca',
+    cardDescription: 'Qualquer coisa',
+    cardAttr1: '70',
+    cardAttr2: '70',
+    cardAttr3: '70',
+    cardImage: 'https://picsum.photos/id/237/100',
+    cardRare: 'muito raro',
+    cardTrunfo: true,
+  },
+  {
+    cardName: 'Outra carta',
+    cardDescription: 'Default',
+    cardAttr1: '7',
+    cardAttr2: '7',
+    cardAttr3: '7',
+    cardImage: 'https://picsum.photos/id/1022/100',
+    cardRare: 'raro',
+    cardTrunfo: false,
+  },
+  {
+    cardName: 'Terceira carta',
+    cardDescription: 'Default',
+    cardAttr1: '5',
+    cardAttr2: '5',
+    cardAttr3: '5',
+    cardImage: 'https://picsum.photos/id/27/100',
+    cardRare: 'normal',
+    cardTrunfo: false,
+  },
+  {
+    cardName: 'Quarta carta',
+    cardDescription: 'Default',
+    cardAttr1: '2',
+    cardAttr2: '2',
+    cardAttr3: '2',
+    cardImage: 'https://picsum.photos/id/37/100',
+    cardRare: 'normal',
+    cardTrunfo: false,
+  },
+];
+
 class App extends React.Component {
   constructor() {
     super();
@@ -18,7 +59,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
-      cards: [],
+      cards: data,
     };
   }
 
@@ -90,9 +131,6 @@ class App extends React.Component {
   handleHasTrunfo = () => {
     const { cards } = this.state;
     this.setState({ hasTrunfo: cards.some((card) => card.cardTrunfo) });
-    // cards.some((card) => (card.cardTrunfo
-    //   ? this.setState({ hasTrunfo: true })
-    //   : this.setState({ hasTrunfo: false })));
   }
 
   handleSave = (event) => {
@@ -113,6 +151,18 @@ class App extends React.Component {
         this.handleHasTrunfo();
       });
     }
+  }
+
+  handleDelete = (event) => {
+    event.preventDefault();
+    const { cards } = this.state;
+    const cardToBeDeleted = event.target.parentNode.id;
+    console.log(cardToBeDeleted);
+    const newCards = cards.splice(cardToBeDeleted, 1);
+    console.log(newCards);
+    this.setState({
+      cards: newCards,
+    });
   }
 
   render() {
@@ -164,17 +214,28 @@ class App extends React.Component {
           </div>
         </main>
         <section className="card-collection">
-          {cards.map((card) => (<Card
-            key={ card.cardName }
-            cardName={ card.cardName }
-            cardDescription={ card.cardDescription }
-            cardAttr1={ card.cardAttr1 }
-            cardAttr2={ card.cardAttr2 }
-            cardAttr3={ card.cardAttr3 }
-            cardImage={ card.cardImage }
-            cardRare={ card.cardRare }
-            cardTrunfo={ card.cardTrunfo }
-          />))}
+          {cards.map((card, idx) => (
+            <div key={ idx } id={ idx }>
+              <Card
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />
+              <button
+                type="button"
+                data-testid="delete-button"
+                id="delete"
+                onClick={ this.handleDelete }
+              >
+                Excluir
+              </button>
+            </div>
+          ))}
         </section>
       </div>
     );
