@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 7px;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 450px;
+  justify-content: space-evenly;
+  width: 250px;
+}
+
+.card img {
+  height: 120px;
+  width: auto;
+}
+
+.blank {
+  color: white;
+  height: 18px;
+}

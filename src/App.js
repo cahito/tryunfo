@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
-// import data from './data';
+import Header from './components/Header';
+import data from './data';
 
 class App extends React.Component {
   constructor() {
@@ -17,7 +18,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
-      cards: [],
+      cards: data,
     };
   }
 
@@ -144,8 +145,8 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div>
-        <h1>Tryunfo</h1>
+      <>
+        <Header />
         <main>
           <div>
             <Form
@@ -176,7 +177,25 @@ class App extends React.Component {
             />
           </div>
         </main>
+        <h2>Todas as cartas disponíveis</h2>
         <section className="card-collection">
+          <aside className="filter-area">
+            <label htmlFor="filter">
+              {'Filtro de buscas: '}
+              <input
+                data-testid="name-filter"
+                type="text"
+              />
+            </label>
+            <button
+              type="button"
+              data-testid="filter-button"
+              id="filter"
+              onClick={ this.handleFilter }
+            >
+              Buscar
+            </button>
+          </aside>
           {cards.map((card, idx) => (
             <div key={ idx } id={ idx }>
               <Card
@@ -200,7 +219,7 @@ class App extends React.Component {
             </div>
           ))}
         </section>
-      </div>
+      </>
     );
   }
 }
