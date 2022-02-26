@@ -1,49 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
-
-const data = [
-  {
-    cardName: 'Carta muito loca',
-    cardDescription: 'Qualquer coisa',
-    cardAttr1: '70',
-    cardAttr2: '70',
-    cardAttr3: '70',
-    cardImage: 'https://picsum.photos/id/237/100',
-    cardRare: 'muito raro',
-    cardTrunfo: true,
-  },
-  {
-    cardName: 'Outra carta',
-    cardDescription: 'Default',
-    cardAttr1: '7',
-    cardAttr2: '7',
-    cardAttr3: '7',
-    cardImage: 'https://picsum.photos/id/1022/100',
-    cardRare: 'raro',
-    cardTrunfo: false,
-  },
-  {
-    cardName: 'Terceira carta',
-    cardDescription: 'Default',
-    cardAttr1: '5',
-    cardAttr2: '5',
-    cardAttr3: '5',
-    cardImage: 'https://picsum.photos/id/27/100',
-    cardRare: 'normal',
-    cardTrunfo: false,
-  },
-  {
-    cardName: 'Quarta carta',
-    cardDescription: 'Default',
-    cardAttr1: '2',
-    cardAttr2: '2',
-    cardAttr3: '2',
-    cardImage: 'https://picsum.photos/id/37/100',
-    cardRare: 'normal',
-    cardTrunfo: false,
-  },
-];
+// import data from './data';
 
 class App extends React.Component {
   constructor() {
@@ -59,7 +17,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
-      cards: data,
+      cards: [],
     };
   }
 
@@ -123,9 +81,13 @@ class App extends React.Component {
   }
 
   addNewCard = (card) => {
-    this.setState((prevState) => ({
-      cards: [...prevState.cards, card],
-    }));
+    const { cards } = this.state;
+    const limit = 32;
+    if (cards.length < limit) {
+      this.setState((prevState) => ({
+        cards: [...prevState.cards, card],
+      }));
+    }
   }
 
   handleHasTrunfo = () => {
@@ -156,13 +118,14 @@ class App extends React.Component {
   handleDelete = (event) => {
     event.preventDefault();
     const { cards } = this.state;
-    const cardToBeDeleted = event.target.parentNode.id;
+    console.log(cards);
+    const cardToBeDeleted = parseInt(event.target.parentNode.id, 10);
     console.log(cardToBeDeleted);
     const newCards = cards.splice(cardToBeDeleted, 1);
     console.log(newCards);
-    this.setState({
-      cards: newCards,
-    });
+    console.log(cards);
+    this.buttonDisabled();
+    this.handleHasTrunfo();
   }
 
   render() {
