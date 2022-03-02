@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import Filter from './components/Filter';
+import Footer from './components/Footer';
 import Form from './components/Form';
 import Header from './components/Header';
 // import data from './data';
@@ -21,6 +22,8 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       cards: [],
       nameFilter: '',
+      rareFilter: 'todas',
+      trunfoFilter: false,
     };
   }
 
@@ -150,6 +153,8 @@ class App extends React.Component {
       isSaveButtonDisabled,
       cards,
       nameFilter,
+      rareFilter,
+      trunfoFilter,
     } = this.state;
 
     return (
@@ -191,9 +196,23 @@ class App extends React.Component {
             handleFilter={ this.handleFilter }
             nameFilter={ nameFilter }
             onInputChange={ this.onInputChange }
+            rareFilter={ rareFilter }
+            trunfoFilter={ trunfoFilter }
           />
           {cards
+            .filter((card) => {
+              if (trunfoFilter) {
+                return card.cardTrunfo;
+              }
+              return card;
+            })
             .filter((card) => card.cardName.includes(nameFilter))
+            .filter((card) => {
+              if (rareFilter === 'todas') {
+                return card;
+              }
+              return card.cardRare === rareFilter;
+            })
             .map((card, idx) => (
               <div key={ idx } id={ idx }>
                 <Card
@@ -217,6 +236,7 @@ class App extends React.Component {
               </div>
             ))}
         </section>
+        <Footer />
       </>
     );
   }
