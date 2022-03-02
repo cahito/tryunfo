@@ -5,9 +5,17 @@
 }
 
 .header {
-  background-color: green;
+  align-items: center;
+  background-color: rgb(3, 107, 82);
   color: white;
+  display: flex;
   height: 50px;
+  justify-content: space-between;
+}
+
+.header img {
+  height: 45px;
+  margin-right: 10px;
 }
 
 h1 {

@@ -1,8 +1,9 @@
 import React from 'react';
 import Card from './components/Card';
+import Filter from './components/Filter';
 import Form from './components/Form';
 import Header from './components/Header';
-import data from './data';
+// import data from './data';
 
 class App extends React.Component {
   constructor() {
@@ -18,7 +19,8 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
-      cards: data,
+      cards: [],
+      nameFilter: '',
     };
   }
 
@@ -129,6 +131,11 @@ class App extends React.Component {
     this.handleHasTrunfo();
   }
 
+  handleFilter = (event) => {
+    event.preventDefault();
+    console.log('funcionando');
+  }
+
   render() {
     const {
       cardName,
@@ -142,6 +149,7 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
       cards,
+      nameFilter,
     } = this.state;
 
     return (
@@ -179,45 +187,35 @@ class App extends React.Component {
         </main>
         <h2>Todas as cartas disponíveis</h2>
         <section className="card-collection">
-          <aside className="filter-area">
-            <label htmlFor="filter">
-              {'Filtro de buscas: '}
-              <input
-                data-testid="name-filter"
-                type="text"
-              />
-            </label>
-            <button
-              type="button"
-              data-testid="filter-button"
-              id="filter"
-              onClick={ this.handleFilter }
-            >
-              Buscar
-            </button>
-          </aside>
-          {cards.map((card, idx) => (
-            <div key={ idx } id={ idx }>
-              <Card
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-              />
-              <button
-                type="button"
-                data-testid="delete-button"
-                id="delete"
-                onClick={ this.handleDelete }
-              >
-                Excluir
-              </button>
-            </div>
-          ))}
+          <Filter
+            handleFilter={ this.handleFilter }
+            nameFilter={ nameFilter }
+            onInputChange={ this.onInputChange }
+          />
+          {cards
+            .filter((card) => card.cardName.includes(nameFilter))
+            .map((card, idx) => (
+              <div key={ idx } id={ idx }>
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <button
+                  type="button"
+                  data-testid="delete-button"
+                  id="delete"
+                  onClick={ this.handleDelete }
+                >
+                  Excluir
+                </button>
+              </div>
+            ))}
         </section>
       </>
     );
