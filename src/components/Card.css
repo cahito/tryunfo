@@ -6,8 +6,10 @@
 
 .card {
   align-items: center;
+  background-color: rgb(3, 107, 82);
   border: 2px solid black;
   border-radius: 7px;
+  color: white;
   display: flex;
   flex-flow: column nowrap;
   height: 450px;
@@ -15,9 +17,22 @@
   width: 250px;
 }
 
+.image-container {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  height: 130px;
+  justify-content: center;
+  width: 230px;
+}
+
 .card img {
   height: 120px;
   width: auto;
+}
+
+.card p {
+  margin: 0 10px;
 }
 
 .blank {

@@ -134,10 +134,10 @@ class App extends React.Component {
     this.handleHasTrunfo();
   }
 
-  handleFilter = (event) => {
+  /* handleFilter = (event) => {
     event.preventDefault();
     console.log('funcionando');
-  }
+  } */
 
   render() {
     const {
@@ -193,7 +193,7 @@ class App extends React.Component {
         <h2>Todas as cartas disponíveis</h2>
         <section className="card-collection">
           <Filter
-            handleFilter={ this.handleFilter }
+            // handleFilter={ this.handleFilter }
             nameFilter={ nameFilter }
             onInputChange={ this.onInputChange }
             rareFilter={ rareFilter }

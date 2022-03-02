@@ -6,10 +6,12 @@ class Header extends React.Component {
     return (
       <header className="header">
         <h1>Tryunfo</h1>
-        <img
-          alt="Logo da Trybe"
-          src="./trybe_logo.png"
-        />
+        <div className="logo-container">
+          <img
+            src="../images/trybe_logo.jpg"
+            alt="Logo da Trybe"
+          />
+        </div>
       </header>
     );
   }
